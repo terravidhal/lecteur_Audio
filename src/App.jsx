@@ -4,7 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import HomeHome from "./components/HomeHome/HomeHome";
+import AudioHighlightedText from "./components/AudioHighlightedText";
 
 
 
@@ -12,7 +12,7 @@ const App = () => {
   return (
         <Routes>
         <Route path="/" element={<Navigate replace to="/home"  />} />  
-        <Route path="/home" element={<HomeHome />} />
+        <Route path="/home" element={<AudioHighlightedText />} />
       </Routes>
   );
 };
