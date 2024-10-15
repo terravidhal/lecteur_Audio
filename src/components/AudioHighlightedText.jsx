@@ -32,26 +32,21 @@ const AudioHighlightedText = ({ dataAudioJson, audioUrl }) => {
   }, [segments, currentTime]);
 
 
-  useEffect(() => {
-    if (highlightedText !== "" && textContainerRef.current) { // si le  segment n' pas vide et le conteneur existe ?
+   useEffect(() => {
+    if (highlightedText !== "" && textContainerRef.current) {  // si le  segment n' pas vide et le conteneur existe ?
       const spanElements = textContainerRef.current.querySelectorAll("span");
-
       const segmentElement = Array.from(spanElements).find((span) =>
-        span.textContent.includes(highlightedText) // return le span qui a le même contenu que le "segment encours de lecture"
+      span.textContent.includes(highlightedText) // return le span qui a le même contenu que le "segment encours de lecture"
       );
-
-      if (segmentElement) {
-        const rect = segmentElement.getBoundingClientRect(); // coordonnés de l'elt
-
-        if (
-          (rect.top < 0) ||
-          (rect.bottom > textContainerRef.current.offsetHeight)
-        ) {
-          segmentElement.scrollIntoView({ behavior: "smooth" });
-        }
+      if (segmentElement) {;
+        segmentElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        //segmentElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+       /* behavior: "auto"  | "instant" | "smooth",
+        block:    "start" | "center" | "end" | "nearest",*/
       }
     }
-  }, [highlightedText]);
+  }, [highlightedText]); 
+
 
 
   const handleDownloadAudio = async () => {
@@ -82,8 +77,8 @@ const AudioHighlightedText = ({ dataAudioJson, audioUrl }) => {
         borderRadius: "5px",
         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
         textAlign: "justify",
-        height: "300px",
-        overflowY: "scroll",
+        //height: "300px",
+        //overflowY: "scroll",
       }}
     >
       <div
